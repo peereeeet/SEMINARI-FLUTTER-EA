@@ -35,6 +35,7 @@ class RegisterController extends GetxController {
 
     try {
       UserModel newUser = UserModel(
+        id: 'unique-id',
         name: nameController.text,
         password: passwordController.text,
         mail: mailController.text,

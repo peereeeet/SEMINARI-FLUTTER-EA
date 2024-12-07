@@ -1,54 +1,49 @@
-import 'package:flutter/material.dart';
+class UserModel {
+  String id; // Remover `final`
+  String name;
+  String mail;
+  String password;
+  String comment;
 
-class UserModel with ChangeNotifier {
-  String _name;
-  String _mail;
-  String _password;
-  String _comment;
+  UserModel({
+    required this.id,
+    required this.name,
+    required this.mail,
+    required this.password,
+    required this.comment,
+  });
 
-  // Constructor
-  UserModel(
-      {required String name,
-      required String mail,
-      required String password,
-      required String comment})
-      : _name = name,
-        _mail = mail,
-        _password = password,
-        _comment = comment;
-
-  // Getters
-  String get name => _name;
-  String get mail => _mail;
-  String get password => _password;
-  String get comment => _comment;
-
-  // Método para actualizar el usuario
-  void setUser(String name, String mail, String password, String comment) {
-    _name = name;
-    _mail = mail;
-    _password = password;
-    _comment = comment;
-    notifyListeners();
+  void setUser({
+    required String id,
+    required String name,
+    required String mail,
+    required String password,
+    required String comment,
+  }) {
+    this.id = id;
+    this.name = name;
+    this.mail = mail;
+    this.password = password;
+    this.comment = comment;
   }
 
-  // Método fromJson para crear una instancia de UserModel desde un Map
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
-      name: json['name'] ?? 'Usuario desconocido',
-      mail: json['mail'] ?? 'No especificado',
-      password: json['password'] ?? 'Sin contraseña',
-      comment: json['comment'] ?? 'Sin comentarios',
+      id: json['_id'] ?? '',
+      name: json['name'] ?? '',
+      mail: json['mail'] ?? '',
+      password: json['password'] ?? '',
+      comment: json['comment'] ?? '',
     );
   }
 
-  // Método toJson para convertir una instancia de UserModel en un Map
   Map<String, dynamic> toJson() {
     return {
-      'name': _name,
-      'mail': _mail,
-      'password':_password,
-      'comment': _comment,
+      '_id': id,
+      'name': name,
+      'mail': mail,
+      'password': password,
+      'comment': comment,
     };
   }
 }
